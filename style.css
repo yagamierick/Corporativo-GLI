@@ -1,0 +1,392 @@
+/* --- CONFIGURACIÓN GENERAL Y PALETA DE COLORES --- */
+:root {
+    --primary-color: #0d233a; /* Azul marino corporativo */
+    --secondary-color: #c5a059; /* Dorado elegante */
+    --text-dark: #2b2b2b;
+    --text-light: #ffffff;
+    --bg-light: #f8f9fa;
+    --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más fluida para el giro */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 15px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-name {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* --- HERO (SECCIÓN PRINCIPAL) --- */
+.hero {
+    height: 80vh;
+    background-image: linear-gradient(rgba(13, 35, 58, 0.75), rgba(13, 35, 58, 0.85)), 
+                      url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    padding: 0 20px;
+    margin-top: 75px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 14px 35px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: #b08d46;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* --- SECCIÓN DE SERVICIOS Y EFECTO DE VOLTEO 3D (FLIP CARD) --- */
+.services-section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.underline {
+    width: 70px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    margin: 15px auto 0 auto;
+    border-radius: 2px;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+/* Contenedor Perspectiva de la Tarjeta */
+.flip-card {
+    background-color: transparent;
+    height: 480px; /* Altura fija para que el giro se vea perfecto */
+    perspective: 1000px; /* Genera el espacio 3D */
+}
+
+/* Contenedor interno que rota */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    box-shadow: var(--card-shadow);
+    border-radius: 8px;
+}
+
+/* Activación del giro de 180° al pasar el cursor y regresa al quitarlo */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Propiedades comunes para la cara frontal y trasera */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Oculta la cara contraria durante el giro */
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* DISEÑO FRONTAL */
+.flip-card-front {
+    background-color: var(--text-light);
+    color: var(--text-dark);
+}
+
+.card-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.btn-outline {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    background: transparent;
+}
+
+/* DISEÑO TRASERO (Con la imagen de fondo más oscurecida) */
+.flip-card-back {
+    background-size: cover;
+    background-position: center;
+    color: var(--text-light);
+    transform: rotateY(180deg); /* El dorso empieza ya invertido */
+    text-align: left;
+}
+
+.back-content {
+    padding: 40px 30px;
+    background: rgba(13, 35, 58, 0.2); /* Sutil capa extra sobre el gradiente para mayor elegancia */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.back-content h3 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.detailed-info-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.detailed-info-list li {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    font-weight: 300;
+    display: flex;
+    align-items: flex-start;
+}
+
+.detailed-info-list li i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    margin-top: 4px;
+    font-size: 0.9rem;
+}
+
+.btn-secondary-card {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+.btn-secondary-card:hover {
+    background-color: #b08d46;
+}
+
+/* --- PIE DE PÁGINA (FOOTER) --- */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 60px 5% 40px 5%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.motivation-phrase {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.contact-prompt {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-separator {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 25px;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: #a0b2c6;
+    font-weight: 300;
+}
+
+/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+    background-color: #20ba5a;
+}
+
+/* --- ADAPTABILIDAD (RESPONSIVE) --- */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .services-section {
+        padding: 50px 5%;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .flip-card {
+        height: 520px; /* Un poco más alto en móviles por el texto */
+    }
+}
